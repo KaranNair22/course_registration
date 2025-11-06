@@ -1,0 +1,60 @@
+{% extends "courses/base.html" %}
+{% block title %}My Dashboard{% endblock %}
+
+{% block hero %}
+<!-- DASHBOARD HEADER START -->
+<section class="fp-hero py-4">
+  <div class="container d-flex justify-content-between align-items-end flex-wrap gap-3">
+    <div>
+      <h2 class="fw-semibold mb-1">My Learning Dashboard</h2>
+      <p class="text-secondary mb-0">Track your enrollments and progress.</p>
+    </div>
+  </div>
+</section>
+<!-- DASHBOARD HEADER END -->
+{% endblock %}
+
+{% block content %}
+
+<!-- STATISTICS CARDS START (removable) -->
+<div class="row g-3 mb-3">
+  <div class="col-sm-4">
+    <div class="fp-stat text-center">
+      <div class="fp-stat-number">{{ enrollments|length }}</div>
+      <div class="fp-stat-label">Enrollments</div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="fp-stat text-center">
+      <div class="fp-stat-number">--</div>
+      <div class="fp-stat-label">Completed</div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="fp-stat text-center">
+      <div class="fp-stat-number">--</div>
+      <div class="fp-stat-label">In Progress</div>
+    </div>
+  </div>
+</div>
+<!-- STATISTICS CARDS END -->
+
+<h3 class="mb-3">My Enrollments</h3>
+{% if enrollments %}
+  <div class="list-group">
+    {% for e in enrollments %}
+      <div class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+          <strong>{{ e.section.course.code }} — {{ e.section.course.title }}</strong><br>
+          <small class="text-secondary">{{ e.section.term.name }} • Section {{ e.section.section_no }} • {{ e.status }}</small>
+        </div>
+        <div>
+          {% if e.grade %}<span class="badge bg-success">Grade: {{ e.grade }}</span>{% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <div class="alert alert-info">You have no enrollments yet.</div>
+{% endif %}
+{% endblock %}

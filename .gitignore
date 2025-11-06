@@ -1,0 +1,25 @@
+# Python cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment folders
+venv/
+env/
+
+# Databases
+db.sqlite3
+
+# Logs
+*.log
+
+# Static and build files
+/staticfiles/
+media/
+
+# Environment & IDE settings
+.env
+.DS_Store
+.idea/
+.vscode/

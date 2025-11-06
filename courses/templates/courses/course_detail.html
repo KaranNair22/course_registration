@@ -1,0 +1,71 @@
+{% extends "courses/base.html" %}
+{% block title %}{{ course.code }}{% endblock %}
+{% block hero %}
+<!-- COURSE HERO START (removable) -->
+<section class="fp-hero py-5">
+  <div class="container">
+    <h1 class="fw-semibold mb-2">{{ course.code }} — {{ course.title }}</h1>
+    <p class="text-secondary mb-0">{{ course.dept.name }} • Credits: {{ course.credits }}</p>
+  </div>
+</section>
+<!-- COURSE HERO END -->
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-lg-8">
+    <!-- COURSE INFO CARD START -->
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="mb-2">About this course</h5>
+        <p class="text-secondary mb-0">{{ course.title }}</p>
+      </div>
+    </div>
+    <!-- COURSE INFO CARD END -->
+
+    <!-- SECTIONS LIST START -->
+    <h5>Open Sections</h5>
+    <div class="list-group mb-3">
+      {% for section in course.sections.all %}
+        <div class="list-group-item">
+          <div class="d-flex justify-content-between">
+            <div>
+              <strong>Section {{ section.section_no }}</strong> — {{ section.term.name }}<br>
+              <small class="text-secondary">Instructor: {{ section.instructor }} • Room: {{ section.room_text }} • {{ section.timeslot_text }}</small>
+            </div>
+            <div class="text-end">
+              <p class="mb-1"><strong>Capacity:</strong> {{ section.capacity }}</p>
+              <a href="{% url 'courses:course_register' course.pk %}" class="btn btn-primary btn-sm">Register</a>
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <div class="list-group-item">No sections available.</div>
+      {% endfor %}
+    </div>
+    <!-- SECTIONS LIST END -->
+  </div>
+
+  <div class="col-lg-4">
+    <!-- REGISTER FORM SIDEBAR START (removable) -->
+    <div class="card">
+      <div class="card-body">
+        <h6>Quick Register</h6>
+        <form method="post" action="{% url 'courses:course_register' course.pk %}">
+          {% csrf_token %}
+          <div class="mb-2">
+            <label class="form-label">Name</label>
+            <input class="form-control fp-input" name="name" placeholder="Your full name">
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Email *</nlabel>
+            <input required class="form-control fp-input" name="email" placeholder="you@example.com" type="email">
+          </div>
+          <button class="btn btn-primary w-100" type="submit">Register</button>
+        </form>
+      </div>
+    </div>
+    <!-- REGISTER FORM SIDEBAR END -->
+  </div>
+</div>
+{% endblock %}

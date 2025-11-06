@@ -1,0 +1,103 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Course Portal{% endblock %}</title>
+
+    <!-- Bootstrap CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'courses/css/custom.css' %}">
+  </head>
+  <body class="bg-surface">
+    <!-- HEADER START: Finpay-style navbar - remove this block if you prefer a minimal header -->
+    <header class="fp-header border-0">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand d-flex align-items-center" href="{% url 'courses:course_list' %}">
+            <span class="fp-logo-circle me-2"></span>
+            <span class="fw-semibold">Course Portal</span>
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navMenu">
+            <ul class="navbar-nav mx-auto gap-lg-3">
+              <li class="nav-item"><a class="nav-link" href="{% url 'courses:course_list' %}">Courses</a></li>
+              {% if request.user.is_authenticated %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'courses:student_dashboard' %}">Dashboard</a></li>
+              {% endif %}
+            </ul>
+            <div class="d-flex gap-2">
+              {% if request.user.is_authenticated %}
+                <a class="btn btn-outline-secondary" href="/admin/logout/">Logout</a>
+              {% else %}
+                <a class="btn btn-outline-secondary" href="/admin/login/">Admin / Login</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!-- HEADER END -->
+
+    <!-- HERO SECTION START (optional): include a page-specific hero in child templates if desired -->
+    {% block hero %}{% endblock %}
+    <!-- HERO SECTION END -->
+
+    <!-- MAIN CONTENT START -->
+    <main class="fp-main container py-4">
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+
+      {% block content %}{% endblock %}
+    </main>
+    <!-- MAIN CONTENT END -->
+
+    <!-- FOOTER START: Finpay-style footer - remove columns you don't need -->
+    <footer class="fp-footer border-top mt-5">
+      <div class="container py-5">
+        <div class="row g-4">
+          <div class="col-12 col-md-4">
+            <div class="d-flex align-items-center mb-2">
+              <span class="fp-logo-circle me-2"></span>
+              <span class="fw-semibold">Course Portal</span>
+            </div>
+          </div>
+          <div class="col-6 col-md-2">
+            <h6 class="text-uppercase text-secondary small">Quick Links</h6>
+            <ul class="list-unstyled small mb-0">
+              <li><a class="fp-footer-link" href="{% url 'courses:course_list' %}">Courses</a></li>
+              {% if request.user.is_authenticated %}
+              <li><a class="fp-footer-link" href="{% url 'courses:student_dashboard' %}">Dashboard</a></li>
+              {% endif %}
+            </ul>
+          </div>
+          <div class="col-6 col-md-2">
+            <h6 class="text-uppercase text-secondary small">Legal</h6>
+            <ul class="list-unstyled small mb-0">
+              <li><a class="fp-footer-link" href="#">Privacy</a></li>
+              <li><a class="fp-footer-link" href="#">Terms</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center pt-4 mt-4 border-top">
+          <small class="text-secondary">© 2025 Course Portal</small> 
+        </div>
+      </div>
+    </footer>
+    <!-- FOOTER END -->
+
+    <!-- Bootstrap JS (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

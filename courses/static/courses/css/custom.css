@@ -1,0 +1,95 @@
+/* ========================================
+CSS VARIABLES / THEME COLORS
+======================================== */
+:root {
+  --fp-teal-500: #14B8A6;
+  --fp-teal-600: #0D9488;
+  --fp-navy-900: #0F172A;
+  --fp-surface: #F8FAFC;
+  --fp-muted: #6B7280;
+  --fp-border: #E5E7EB;
+  --fp-white: #ffffff;
+  --fp-shadow: 0 10px 20px rgba(2, 6, 23, 0.06);
+  --fp-radius: 14px;
+}
+
+/* ========================================
+TYPOGRAPHY
+======================================== */
+body { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color: var(--fp-navy-900); }
+.fw-semibold { font-weight: 600; }
+.text-secondary { color: var(--fp-muted) !important; }
+.bg-surface { background-color: var(--fp-surface) !important; }
+
+/* ========================================
+HEADER / NAVBAR
+======================================== */
+.fp-header .navbar { padding-top: 0.875rem; padding-bottom: 0.875rem; background: var(--fp-white); border-bottom: 1px solid var(--fp-border); }
+.fp-logo-circle { width: 28px; height: 28px; background: linear-gradient(135deg, var(--fp-teal-500), var(--fp-teal-600)); border-radius: 50%; display: inline-block; }
+.navbar .nav-link { color: var(--fp-muted); font-weight: 500; }
+.navbar .nav-link:hover, .navbar .nav-link.active { color: var(--fp-navy-900); }
+.btn-outline-secondary { border-color: var(--fp-border); color: var(--fp-navy-900); }
+.btn-outline-secondary:hover { background: var(--fp-surface); }
+
+/* ========================================
+HERO SECTION
+Remove this section if not using hero sections
+======================================== */
+.fp-hero { background: radial-gradient(80% 50% at 100% 0%, rgba(20,184,166,0.08) 0, rgba(20,184,166,0) 60%), var(--fp-white); border-bottom: 1px solid var(--fp-border); }
+.fp-hero .fp-hero-card { background: var(--fp-white); border: 1px solid var(--fp-border); box-shadow: var(--fp-shadow); border-radius: var(--fp-radius); }
+
+/* ========================================
+FEATURES SECTION
+Remove this section if not using features
+======================================== */
+.fp-feature { background: var(--fp-white); border: 1px solid var(--fp-border); border-radius: var(--fp-radius); box-shadow: var(--fp-shadow); padding: 1.25rem; }
+.fp-feature-icon { width: 40px; height: 40px; border-radius: 10px; background: rgba(20,184,166,0.12); color: var(--fp-teal-600); display: grid; place-items: center; font-weight: 700; }
+
+/* ========================================
+STATISTICS SECTION
+Remove this section if not using statistics
+======================================== */
+.fp-stat { background: var(--fp-white); border: 1px solid var(--fp-border); border-radius: var(--fp-radius); box-shadow: var(--fp-shadow); padding: 1.25rem; }
+.fp-stat .fp-stat-number { font-size: 2rem; font-weight: 700; color: var(--fp-navy-900); }
+.fp-stat .fp-stat-label { color: var(--fp-muted); font-size: 0.9rem; }
+
+/* ========================================
+COURSE CARDS
+======================================== */
+.card { border: 1px solid var(--fp-border); border-radius: var(--fp-radius); box-shadow: var(--fp-shadow); }
+.card h5 { font-weight: 600; }
+.list-group-item { border-color: var(--fp-border); }
+
+/* ========================================
+BUTTONS
+======================================== */
+.btn-primary { background-color: var(--fp-teal-600); border-color: var(--fp-teal-600); }
+.btn-primary:hover { background-color: var(--fp-teal-500); border-color: var(--fp-teal-500); }
+.btn-soft { background: rgba(20,184,166,0.1); color: var(--fp-teal-600); border: 0; }
+.btn-soft:hover { background: rgba(20,184,166,0.18); color: var(--fp-teal-600); }
+
+/* ========================================
+FORMS
+======================================== */
+.fp-input { border-color: var(--fp-border); border-radius: 12px; }
+.fp-input:focus { box-shadow: 0 0 0 .25rem rgba(20,184,166,.15); border-color: var(--fp-teal-500); }
+
+/* ========================================
+FOOTER
+======================================== */
+.fp-footer { background: var(--fp-white); }
+.fp-footer-link { color: var(--fp-muted); text-decoration: none; }
+.fp-footer-link:hover { color: var(--fp-navy-900); text-decoration: underline; }
+
+/* ========================================
+RESPONSIVE / MOBILE STYLES
+======================================== */
+@media (max-width: 575.98px) {
+  .fp-hero .display-5 { font-size: 1.75rem; }
+}
+
+/* ========================================
+UTILITY CLASSES
+======================================== */
+.shadow-soft { box-shadow: var(--fp-shadow); }
+.rounded-14 { border-radius: var(--fp-radius); }

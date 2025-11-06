@@ -1,0 +1,45 @@
+{% extends "courses/base.html" %}
+{% block title %}Register for {{ course.code }}{% endblock %}
+
+{% block hero %}
+<!-- REGISTER HERO START (removable) -->
+<section class="fp-hero py-4">
+  <div class="container">
+    <h2 class="fw-semibold mb-1">Register: {{ course.code }} — {{ course.title }}</h2>
+    {% if section %}
+      <p class="text-secondary mb-0">Section: {{ section.section_no }} • {{ section.term.name }}</p>
+    {% else %}
+      <p class="text-secondary mb-0">No open section available for this course.</p>
+    {% endif %}
+  </div>
+</section>
+<!-- REGISTER HERO END -->
+{% endblock %}
+
+{% block content %}
+<!-- REGISTER FORM CARD START -->
+<div class="row justify-content-center">
+  <div class="col-md-7 col-lg-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="mb-3">Quick registration</h5>
+        <form method="post">
+          {% csrf_token %}
+          <div class="mb-2">
+            <label class="form-label">Name</label>
+            <input class="form-control fp-input" name="name" placeholder="Your name">
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Email *</label>
+            <input required class="form-control fp-input" name="email" type="email" placeholder="you@example.com">
+          </div>
+          <div class="d-grid">
+            <button class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- REGISTER FORM CARD END -->
+{% endblock %}

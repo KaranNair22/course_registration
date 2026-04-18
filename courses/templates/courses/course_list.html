@@ -8,7 +8,6 @@
     <div class="row align-items-center g-4">
       <div class="col-lg-7">
         <h1 class="display-5 fw-semibold mb-3">Discover your perfect course</h1>
-        <p class="text-secondary mb-4">Learn with a modern platform inspired by Finpay’s clean and professional design.</p>
         <div class="d-flex gap-2 flex-wrap">
           <a href="{% url 'courses:course_list' %}" class="btn btn-primary">Browse Courses</a>
           {% if request.user.is_authenticated %}

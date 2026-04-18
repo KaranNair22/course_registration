@@ -29,12 +29,17 @@
               <li class="nav-item"><a class="nav-link" href="{% url 'courses:course_list' %}">Courses</a></li>
               {% if request.user.is_authenticated %}
                 <li class="nav-item"><a class="nav-link" href="{% url 'courses:student_dashboard' %}">Dashboard</a></li>
+                {% if request.user.is_staff or request.user.is_superuser or request.user.role == 'ADMIN' %}
+                  <li class="nav-item"><a class="nav-link" href="{% url 'courses:admin_dashboard' %}">Admin</a></li>
+                {% endif %}
               {% endif %}
             </ul>
-            <div class="d-flex gap-2">
+            <div class="d-flex gap-3 align-items-center">
               {% if request.user.is_authenticated %}
-                <a class="btn btn-outline-secondary" href="/admin/logout/">Logout</a>
+                <div class="text-muted small">Welcome, <strong>{{ request.user.get_full_name|default:request.user.email }}</strong></div>
+                <a class="btn btn-outline-secondary" href="{% url 'courses:logout' %}">Logout</a>
               {% else %}
+                <a class="btn btn-outline-secondary" href="{% url 'courses:login' %}">Login</a>
                 <a class="btn btn-outline-secondary" href="/admin/login/">Admin / Login</a>
               {% endif %}
             </div>

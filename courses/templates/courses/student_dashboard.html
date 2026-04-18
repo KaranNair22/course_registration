@@ -45,10 +45,11 @@
     {% for e in enrollments %}
       <div class="list-group-item d-flex justify-content-between align-items-center">
         <div>
-          <strong>{{ e.section.course.code }} — {{ e.section.course.title }}</strong><br>
-          <small class="text-secondary">{{ e.section.term.name }} • Section {{ e.section.section_no }} • {{ e.status }}</small>
+          <a href="{% url 'courses:course_detail' e.section.course.pk %}"><strong>{{ e.section.course.code }} — {{ e.section.course.title }}</strong></a><br>
+          <small class="text-secondary">{{ e.section.term.name }} • Section {{ e.section.section_no }} • {{ e.get_status_display }}</small>
+          <div class="small text-muted">Enrolled at: {{ e.enrolled_at|date:'SHORT_DATETIME_FORMAT' }}</div>
         </div>
-        <div>
+        <div class="text-end">
           {% if e.grade %}<span class="badge bg-success">Grade: {{ e.grade }}</span>{% endif %}
         </div>
       </div>

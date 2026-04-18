@@ -1,0 +1,42 @@
+[
+  {
+    "instructor_id": 1,
+    "employee_no": "EMP1001",
+    "title": "Professor",
+    "user__email": "john.doe@example.com",
+    "user__first_name": "John",
+    "user__last_name": "Doe"
+  },
+  {
+    "instructor_id": 2,
+    "employee_no": "EMP1002",
+    "title": "Associate Professor",
+    "user__email": "jane.smith@example.com",
+    "user__first_name": "Jane",
+    "user__last_name": "Smith"
+  },
+  {
+    "instructor_id": 3,
+    "employee_no": "EMP1003",
+    "title": "Assistant Professor",
+    "user__email": "mark.wilson@example.com",
+    "user__first_name": "Mark",
+    "user__last_name": "Wilson"
+  },
+  {
+    "instructor_id": 4,
+    "employee_no": "EMP1004",
+    "title": "Lecturer",
+    "user__email": "emily.jones@example.com",
+    "user__first_name": "Emily",
+    "user__last_name": "Jones"
+  },
+  {
+    "instructor_id": 5,
+    "employee_no": "EMP1005",
+    "title": "Senior Lecturer",
+    "user__email": "peter.brown@example.com",
+    "user__first_name": "Peter",
+    "user__last_name": "Brown"
+  }
+]

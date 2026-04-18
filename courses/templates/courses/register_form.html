@@ -23,20 +23,23 @@
     <div class="card">
       <div class="card-body">
         <h5 class="mb-3">Quick registration</h5>
-        <form method="post">
-          {% csrf_token %}
-          <div class="mb-2">
-            <label class="form-label">Name</label>
-            <input class="form-control fp-input" name="name" placeholder="Your name">
+        {% if request.user.is_authenticated %}
+          <p class="text-secondary small mb-3">
+            You are registering as {{ request.user.get_full_name|default:request.user.email }}.
+          </p>
+          <form method="post">
+            {% csrf_token %}
+            <div class="d-grid">
+              <button class="btn btn-primary">Confirm registration</button>
+            </div>
+          </form>
+        {% else %}
+          <p class="text-secondary small mb-3">Log in with your student account or create a new one to register for this course.</p>
+          <div class="d-grid gap-2">
+            <a class="btn btn-outline-secondary w-100" href="/admin/login/?next={% url 'courses:course_register' course.pk %}">Log in</a>
+            <a class="btn btn-primary w-100" href="{% url 'courses:student_signup' %}?next={% url 'courses:course_register' course.pk %}">Create account</a>
           </div>
-          <div class="mb-2">
-            <label class="form-label">Email *</label>
-            <input required class="form-control fp-input" name="email" type="email" placeholder="you@example.com">
-          </div>
-          <div class="d-grid">
-            <button class="btn btn-primary">Submit</button>
-          </div>
-        </form>
+        {% endif %}
       </div>
     </div>
   </div>

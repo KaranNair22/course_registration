@@ -1,0 +1,109 @@
+{% extends "courses/base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block hero %}
+<section class="fp-hero py-4">
+  <div class="container">
+    <h2 class="fw-semibold mb-1">Admin Dashboard</h2>
+    <p class="text-secondary mb-0">Manage courses, sections, and enrollments.</p>
+  </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<div class="row g-4">
+  <div class="col-lg-6">
+    <div class="card h-100">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="mb-0">Courses</h5>
+          <a class="btn btn-primary btn-sm" href="{% url 'courses:admin_course_create' %}">Add course</a>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-sm align-middle">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Title</th>
+                <th>Credits</th>
+                <th>Department</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for course in courses %}
+                <tr>
+                  <td>{{ course.code }}</td>
+                  <td>{{ course.title }}</td>
+                  <td>{{ course.credits }}</td>
+                  <td>{{ course.dept.name }}</td>
+                  <td>
+                    {% if course.is_active %}
+                      <span class="badge bg-success">Active</span>
+                    {% else %}
+                      <span class="badge bg-secondary">Inactive</span>
+                    {% endif %}
+                  </td>
+                  <td class="text-end">
+                    <a class="btn btn-outline-secondary btn-sm" href="{% url 'courses:admin_course_update' course.pk %}">Edit</a>
+                    <a class="btn btn-outline-danger btn-sm" href="{% url 'courses:admin_course_delete' course.pk %}">Delete</a>
+                  </td>
+                </tr>
+              {% empty %}
+                <tr>
+                  <td colspan="6" class="text-center text-secondary">No courses found.</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="card h-100">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="mb-0">Sections</h5>
+          <a class="btn btn-primary btn-sm" href="{% url 'courses:admin_section_create' %}">Add section</a>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-sm align-middle">
+            <thead>
+              <tr>
+                <th>Course</th>
+                <th>Section</th>
+                <th>Term</th>
+                <th>Capacity</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for section in sections %}
+                <tr>
+                  <td>{{ section.course.code }}</td>
+                  <td>{{ section.section_no }}</td>
+                  <td>{{ section.term.name }}</td>
+                  <td>{{ section.capacity }}</td>
+                  <td>{{ section.get_status_display }}</td>
+                  <td class="text-end">
+                    <a class="btn btn-outline-secondary btn-sm" href="{% url 'courses:admin_section_update' section.pk %}">Edit</a>
+                    <a class="btn btn-outline-danger btn-sm" href="{% url 'courses:admin_section_delete' section.pk %}">Delete</a>
+                  </td>
+                </tr>
+              {% empty %}
+                <tr>
+                  <td colspan="6" class="text-center text-secondary">No sections found.</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

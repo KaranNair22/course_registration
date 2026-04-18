@@ -1,0 +1,42 @@
+{% extends "courses/base.html" %}
+{% block title %}{% if course %}Edit {{ course.code }}{% else %}Add Course{% endif %}{% endblock %}
+
+{% block hero %}
+<section class="fp-hero py-4">
+  <div class="container">
+    <h2 class="fw-semibold mb-1">{% if course %}Edit Course{% else %}Add Course{% endif %}</h2>
+    <p class="text-secondary mb-0"><a href="{% url 'courses:admin_dashboard' %}">&larr; Back to dashboard</a></p>
+  </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-body">
+        <form method="post">
+          {% csrf_token %}
+          {% for field in form %}
+            <div class="mb-3">
+              <label class="form-label">{{ field.label }}{% if field.field.required %} *{% endif %}</label>
+              {{ field }}
+              {% if field.help_text %}
+                <div class="form-text">{{ field.help_text }}</div>
+              {% endif %}
+              {% for error in field.errors %}
+                <div class="text-danger small">{{ error }}</div>
+              {% endfor %}
+            </div>
+          {% endfor %}
+          <div class="d-flex justify-content-end gap-2">
+            <a class="btn btn-outline-secondary" href="{% url 'courses:admin_dashboard' %}">Cancel</a>
+            <button class="btn btn-primary" type="submit">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

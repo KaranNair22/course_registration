@@ -1,0 +1,24 @@
+{
+  "departments": [
+    {"code": "CS", "name": "Computer Science"},
+    {"code": "MATH", "name": "Mathematics"},
+    {"code": "ENG", "name": "English"}
+  ],
+  "terms": [
+    {"name": "Fall 2025", "start_date": "2025-09-01", "end_date": "2025-12-20", "is_enrollment_open": true},
+    {"name": "Spring 2026", "start_date": "2026-01-10", "end_date": "2026-05-05", "is_enrollment_open": false}
+  ],
+  "courses": [
+    {"code": "CS101", "title": "Intro to Computer Science", "credits": 3, "dept": "CS", "is_active": true},
+    {"code": "CS201", "title": "Data Structures", "credits": 4, "dept": "CS", "is_active": true},
+    {"code": "MATH101", "title": "Calculus I", "credits": 4, "dept": "MATH", "is_active": true},
+    {"code": "ENG201", "title": "Academic Writing", "credits": 2, "dept": "ENG", "is_active": true}
+  ],
+  "sections": [
+    {"course": "CS101", "term": "Fall 2025", "section_no": "A", "instructor_employee_no": "EMP1001", "room_text": "Room 101", "timeslot_text": "MWF 09:00-10:00", "capacity": 30, "status": "OPEN"},
+    {"course": "CS101", "term": "Fall 2025", "section_no": "B", "instructor_employee_no": "EMP1002", "room_text": "Room 102", "timeslot_text": "TTh 14:00-15:30", "capacity": 25, "status": "OPEN"},
+    {"course": "CS201", "term": "Fall 2025", "section_no": "A", "instructor_employee_no": "EMP1003", "room_text": "Lab 1", "timeslot_text": "TTh 10:00-11:30", "capacity": 20, "status": "PLANNED"},
+    {"course": "MATH101", "term": "Fall 2025", "section_no": "A", "instructor_employee_no": "EMP1004", "room_text": "Room 201", "timeslot_text": "MWF 11:00-12:00", "capacity": 40, "status": "OPEN"},
+    {"course": "ENG201", "term": "Spring 2026", "section_no": "A", "instructor_employee_no": "EMP1005", "room_text": "Room 301", "timeslot_text": "TTh 09:00-10:30", "capacity": 35, "status": "PLANNED"}
+  ]
+}

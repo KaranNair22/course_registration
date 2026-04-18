@@ -1,0 +1,6 @@
+email,token_url,employee_no
+john.doe@example.com,http://127.0.0.1:8000/instructor/token-login/eyJ1c2VyX3BrIjo0fQ:1vJjhV:xmuy7BVtjrigBsNg68haISkMFYCxvdej2vDuMPRUq-g/,EMP1001
+jane.smith@example.com,http://127.0.0.1:8000/instructor/token-login/eyJ1c2VyX3BrIjo1fQ:1vJjhV:vAdnGnkgltXPyig8pPMsOvX-UR56_7FtEzxNcZ_dBQM/,EMP1002
+mark.wilson@example.com,http://127.0.0.1:8000/instructor/token-login/eyJ1c2VyX3BrIjo2fQ:1vJjhV:BSrA06SXAKGfOA7dCxzl7TEuiOAKLEYB6xpiXcZ4Nuk/,EMP1003
+emily.jones@example.com,http://127.0.0.1:8000/instructor/token-login/eyJ1c2VyX3BrIjo3fQ:1vJjhV:hWrhMtcN1PhXYGBYqxQCrooIgT7lMNPV2owaINY-_VU/,EMP1004
+peter.brown@example.com,http://127.0.0.1:8000/instructor/token-login/eyJ1c2VyX3BrIjo4fQ:1vJjhV:e3vi39u0oCIsxnEu68gNXGNGRLXu2ZCBR8GV0jAwxtc/,EMP1005

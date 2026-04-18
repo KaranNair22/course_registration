@@ -35,7 +35,14 @@
             </div>
             <div class="text-end">
               <p class="mb-1"><strong>Capacity:</strong> {{ section.capacity }}</p>
-              <a href="{% url 'courses:course_register' course.pk %}" class="btn btn-primary btn-sm">Register</a>
+              {% if request.user.is_authenticated %}
+                <a href="{% url 'courses:course_register' course.pk %}" class="btn btn-primary btn-sm">Register</a>
+              {% else %}
+                <div class="d-flex gap-2">
+                  <a href="/admin/login/?next={% url 'courses:course_register' course.pk %}" class="btn btn-outline-secondary btn-sm">Log in</a>
+                  <a href="{% url 'courses:student_signup' %}?next={% url 'courses:course_register' course.pk %}" class="btn btn-primary btn-sm">Create account</a>
+                </div>
+              {% endif %}
             </div>
           </div>
         </div>
@@ -51,18 +58,18 @@
     <div class="card">
       <div class="card-body">
         <h6>Quick Register</h6>
-        <form method="post" action="{% url 'courses:course_register' course.pk %}">
-          {% csrf_token %}
-          <div class="mb-2">
-            <label class="form-label">Name</label>
-            <input class="form-control fp-input" name="name" placeholder="Your full name">
+        {% if request.user.is_authenticated %}
+          <form method="post" action="{% url 'courses:course_register' course.pk %}">
+            {% csrf_token %}
+            <button class="btn btn-primary w-100" type="submit">Confirm registration</button>
+          </form>
+        {% else %}
+          <p class="text-secondary small mb-3">Log in with your student account or create a new one to register for this course.</p>
+          <div class="d-grid gap-2">
+            <a class="btn btn-outline-secondary w-100" href="/admin/login/?next={% url 'courses:course_register' course.pk %}">Log in</a>
+            <a class="btn btn-primary w-100" href="{% url 'courses:student_signup' %}?next={% url 'courses:course_register' course.pk %}">Create account</a>
           </div>
-          <div class="mb-2">
-            <label class="form-label">Email *</nlabel>
-            <input required class="form-control fp-input" name="email" placeholder="you@example.com" type="email">
-          </div>
-          <button class="btn btn-primary w-100" type="submit">Register</button>
-        </form>
+        {% endif %}
       </div>
     </div>
     <!-- REGISTER FORM SIDEBAR END -->

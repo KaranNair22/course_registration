@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     
     #installed by me
     'courses',
+    # required for admin import/export templates
+    'import_export',
 ]
 
 AUTH_USER_MODEL = 'courses.User'
